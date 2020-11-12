@@ -14,7 +14,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           owner: 'Astul-Betizagasti'
-          repo: 'IssueTest'
+          repo: 'IssueTest2'
           title: 'Title'
           body: 'Body content'
       - name: Print outputs
