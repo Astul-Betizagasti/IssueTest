@@ -15,7 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
-          GITHUB_OWNER: 'Astul-Betizagasti'
-          GITHUB_REPOSITORY: 'IssueTest'
+          GITHUB_OWNER: 'astul-betizagasti'
+          GITHUB_REPOSITORY: 'issueTest'
           GITHUB_ISSUE_TITLE: 'Demo''ing Git Issue Creation'
           GITHUB_ISSUE_BODY: 'Demo''ing Git Issue Creation'
