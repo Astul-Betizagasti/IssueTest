@@ -13,9 +13,9 @@ jobs:
       - name: Git Creation Demo
         uses: bryannice/gitactions-git-issue-creation@master
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
-          GITHUB_OWNER: 'RobertGlobant20'
-          GITHUB_REPOSITORY: 'issues_action2'
+          GITHUB_OWNER: 'Astul-Betizagasti'
+          GITHUB_REPOSITORY: 'IssueTest'
           GITHUB_ISSUE_TITLE: 'Demo''ing Git Issue Creation'
           GITHUB_ISSUE_BODY: 'Demo''ing Git Issue Creation'
