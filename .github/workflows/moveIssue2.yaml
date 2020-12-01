@@ -1,0 +1,13 @@
+name: Move issue
+
+on: 
+  issues:
+    types: [opened]
+
+jobs: 
+  gitIssueCreation:
+    name: Git Creation Demo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move
+        run: hub issue transfer ${{ github.event.issue.number }} IssueTest2
