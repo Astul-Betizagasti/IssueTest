@@ -12,3 +12,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Move
         run: hub issue transfer ${{github.event.issue.number}} IssueTest2
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
