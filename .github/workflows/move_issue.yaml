@@ -14,6 +14,7 @@ jobs:
     name: Move issues to corresponding repository
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
         if: contains(github.event.issue.labels.*.name, matrix.label)
         run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
