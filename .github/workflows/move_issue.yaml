@@ -1,0 +1,21 @@
+name: Move issue by labels
+on: 
+  issues:
+    types: [labeled]
+jobs: 
+  gitIssueTransfer:
+    strategy:
+      matrix: 
+        include: 
+          - label: 'Revit'
+            repoName: 'IssueTest2'
+          - label: 'Advance-Steel'
+            repoName: 'IssueTest3'
+    name: Move issues to corresponding repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
+        if: contains(github.event.issue.labels.*.name, matrix.label)
+        run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
+        env:
+          token: ${{ secrets.TOKEN }}
