@@ -18,4 +18,4 @@ jobs:
         if: contains(github.event.issue.labels.*.name, matrix.label)
         run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
         env:
-          token: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
