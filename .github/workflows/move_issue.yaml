@@ -15,11 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Print data
-        run: |
-          echo ${{ github.event.issue.body }}
+      #- name: Print data
+       # run: |
+        #  echo ${{ github.event.issue.body }}
       - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
         if: contains(github.event.issue.labels.*.name, matrix.label)
-        run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          curl -v -u admin:${{ secrets.TOKEN }} -d '{"labels": []}' ${{ github.event.issue.url }}/labels
+        #hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
+        #env:
+         # GITHUB_TOKEN: ${{ secrets.TOKEN }}
