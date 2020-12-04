@@ -17,8 +17,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
         if: (github.event.label.name == matrix.label)
-        run: |
-          curl -X DELETE -v -u admin:${{ secrets.TOKEN }} -d '{"labels": []}' ${{ github.event.issue.url }}/labels/${{matrix.label}}
-        # hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
+        run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
