@@ -6,7 +6,7 @@ param([string]$issueContent)
 . .\.github\scripts\issue_parser.ps1
 #Contains a collection of {Label, Keywords}. 
 #"label" is the label to be use if specific "keywords" are found on a section
-$labelsData = .\.github\LabelsData.ps1
+$labelsData = .\.github\LabelsKeywordsConfig.ps1
 
 #--Processing--
 #Parse the issue
