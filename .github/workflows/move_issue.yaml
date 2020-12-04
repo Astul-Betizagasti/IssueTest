@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Print data
         run: |
-          echo "content_analysis_response=$(pwsh .\\.github\\scripts\\print.ps1 "${{ github.event }}" )" >> $GITHUB_ENV
+          echo ${{ github.event.issue.body }}
       - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
         if: contains(github.event.issue.labels.*.name, matrix.label)
         run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
