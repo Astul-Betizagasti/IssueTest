@@ -18,7 +18,10 @@ jobs:
       - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
         if: contains(github.event.issue.labels.*.name, matrix.label)
         run: |
+          echo json_decode(${{github.event}})
+          echo json_decode(${{github.event.issue}})
           echo ${{github.event}}
+          echo ${{github.event.issue}}
           hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
