@@ -1,5 +1,5 @@
 #--Params--
-#labelsString: Labels to add in the flowing format: '"label1", "label2"'
+#labelsString: Labels to add in the flowing format: 'label1, label2'
 #token: Users github token
 #URL: URL to which make the post label request
 param([string]$labelsString, [string]$token, [string]$URL)
