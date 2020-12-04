@@ -33,9 +33,9 @@ foreach ($labelData in $labelsData) {
 
 #Response
 if($labels.count -gt 0){
-    #ouput: label names separated by commas
-    #example: label1, label2
-    Write-Output ($labels -join ", ")
+    #ouput: label names as strings separated by commas
+    #example: "label1", "label2"
+    Write-Output ('"' + ($labels -join '", "') + '"')
 }
 else{
     Write-Output ("Valid")
