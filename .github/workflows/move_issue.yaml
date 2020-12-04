@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
         if: contains(github.event.issue.labels.*.name, matrix.label)
-        run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
+        run: |
+          echo ${{github.event}}
+          hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
