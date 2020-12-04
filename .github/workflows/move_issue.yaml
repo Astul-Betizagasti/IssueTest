@@ -8,9 +8,9 @@ jobs:
       matrix: 
         include: 
           - label: 'Revit'
-            repoName: 'IssueTest2'
+            repoName: 'DynamoRevit'
           - label: 'Advance-Steel'
-            repoName: 'IssueTest3'
+            repoName: 'Dynamo-Advance-Steel'
     name: Move issues to corresponding repository
     runs-on: ubuntu-latest
     steps:
