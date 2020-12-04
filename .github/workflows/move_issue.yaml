@@ -15,10 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
-        #if: contains(github.event.issue.labels.*.name, matrix.label)
+      - name: Print data
         run: |
-          ${{github.event.issue.labels.*.name}}
-          hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
+          echo "content_analysis_response=$(pwsh .\\.github\\scripts\\print.ps1 "${{ github.event }}" )" >> $GITHUB_ENV
+      - name: (Label ${{ matrix.label }}) Move to ${{ matrix.repoName }}
+        if: contains(github.event.issue.labels.*.name, matrix.label)
+        run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
