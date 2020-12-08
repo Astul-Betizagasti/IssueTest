@@ -19,6 +19,7 @@ $parsed_issue_template = Get_Parsed_Issue $issueTemplate
 
 #Compares the tempalte and issue
 $comparation_result = Compare_Issue_Template $parsed_issue_template $parsed_issue_content
+$comparation_result
 
 $analysis_result = " "
 [int]$missingFields = 0
@@ -28,7 +29,7 @@ $analysis_result = " "
 $FullyEmpty = "True"
 foreach ($Section in $comparation_result) {
 
-    if ($Section.TitleStauts -ne "New") {
+    if ($Section.TitleStatus -ne "New") {
         if (($Section.ContentStatus -eq "Empty") -or ($Section.ContentStatus -eq "NotFound")) {
             $script:analysis_result = "$($script:analysis_result) \n- $($Section.Title)"
             $script:missingFields = $script:missingFields + 1
