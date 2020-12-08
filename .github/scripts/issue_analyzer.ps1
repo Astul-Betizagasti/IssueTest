@@ -19,7 +19,6 @@ $parsed_issue_template = Get_Parsed_Issue $issueTemplate
 
 #Compares the tempalte and issue
 $comparation_result = Compare_Issue_Template $parsed_issue_template $parsed_issue_content
-$comparation_result
 
 $analysis_result = " "
 [int]$missingFields = 0
