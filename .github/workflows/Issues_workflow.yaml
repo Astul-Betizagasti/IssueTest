@@ -36,7 +36,7 @@ jobs:
   #This job will scan the issue content to determing if more information is needed and act acordingly
   #Will only run if the "redirectIssue" job output a 'Valid' result
   checkIssueInformation:
-    if: needs.redirectIssue.outputs.result != 'Valid'
+    if: needs.redirectIssue.outputs.result == 'Valid'
     name: Check for missing information
     runs-on: ubuntu-latest
     env:
