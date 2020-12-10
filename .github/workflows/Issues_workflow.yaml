@@ -32,11 +32,16 @@ jobs:
         #Uses DYNAMOBOTTOKEN to allow interaction between repos
         run: |
           curl -v -u admin:${{ secrets.TOKEN }} -d '{"labels": ["${{env.content_analysis_response}}"]}' ${{ github.event.issue.url }}/labels
+          - name: Label issue
+      - if: env.content_analysis_response == 'Valid'
+        #Uses DYNAMOBOTTOKEN to allow interaction between repos
+        run: |
+          echo ${{env.content_analysis_response}}
   
   #This job will scan the issue content to determing if more information is needed and act acordingly
   #Will only run if the "redirectIssue" job output a 'Valid' result
   checkIssueInformation:
-    if: needs.redirectIssue.outputs.result == 'Valid'
+    #if: needs.redirectIssue.outputs.result == 'Valid'
     name: Check for missing information
     runs-on: ubuntu-latest
     env:
@@ -59,6 +64,10 @@ jobs:
       #amount of sections from the template that can be missing information for the issue to still be considered complete
       acceptable_missing_info: 1
     steps:
+      - name: test
+        #Uses DYNAMOBOTTOKEN to allow interaction between repos
+        run: |
+          echo ${{needs.redirectIssue.outputs.result}}
       - uses: actions/checkout@v2
       - name: Remove conflicting chars
         uses: frabert/replace-string-action@v1.2
