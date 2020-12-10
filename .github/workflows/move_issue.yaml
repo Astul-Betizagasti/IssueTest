@@ -5,7 +5,7 @@ on:
 jobs: 
   gitIssueTransfer:
     env:
-      bot_comment: "Test comment"
+      bot_comment: "FYI: DynamoDS/dynamo"
     strategy:
       matrix: 
         include: 
