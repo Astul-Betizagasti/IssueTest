@@ -11,6 +11,8 @@ jobs:
             repoName: 'IssueTest2'
           - label: 'Advance-Steel'
             repoName: 'Dynamo-Advance-Steel'
+          - label: 'Wishlist'
+            repoName: 'DynamoWishlist'
     name: Move issues to corresponding repository
     runs-on: ubuntu-latest
     steps:
