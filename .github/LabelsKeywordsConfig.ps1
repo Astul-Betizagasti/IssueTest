@@ -1,4 +1,6 @@
 @(
+    #The order of the entries in this array matters, 
+    #as this is how repository's priority is define for transfering issues.
     @{ Label = 'Wishlist'; Keywords = @(
         'wish', 
         'wishlist', 
@@ -30,7 +32,7 @@
         'casework',
         'electrical')
     },
-    
+
     @{ Label = 'Advance-Steel'; Keywords = @(
         'advance-steel', 
         'advancesteel', 
