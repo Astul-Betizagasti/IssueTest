@@ -21,7 +21,9 @@ jobs:
       - uses: actions/checkout@v2
 
       #Adds a comment to the issue before moving it
-      - uses: ben-z/actions-comment-on-issue@1.0.2
+      - name: Add comment
+        if: (github.event.label.name == matrix.label)
+        uses: ben-z/actions-comment-on-issue@1.0.2
         with:
           message: ${{ env.bot_comment }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
