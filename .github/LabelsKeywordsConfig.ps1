@@ -33,9 +33,6 @@
         'electrical')
     },
 
-    @{ Label = 'Advance-Steel'; Keywords = @(
-        'advance-steel', 
-        'advancesteel', 
-        'advance steel') 
+    @{ Label = 'Advance-Steel'; Keywords = @() 
     }
 )

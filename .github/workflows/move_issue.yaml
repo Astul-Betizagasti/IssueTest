@@ -5,12 +5,12 @@ on:
 jobs: 
   gitIssueTransfer:
     env:
-      bot_comment: "FYI: DynamoDS/dynamo"
+      bot_comment: "FYI: @DynamoDS/dynamo"
     strategy:
       matrix: 
         include: 
           - label: 'Revit'
-            repoName: 'IssueTest2'
+            repoName: 'DynamoRevit'
           - label: 'Advance-Steel'
             repoName: 'Dynamo-Advance-Steel'
           - label: 'Wishlist'
@@ -34,4 +34,4 @@ jobs:
         run: hub issue transfer ${{github.event.issue.number}} ${{matrix.repoName}}
         env:
           #Uses DYNAMOBOTTOKEN to allow interaction between repos
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DYNAMOBOTTOKEN }}
