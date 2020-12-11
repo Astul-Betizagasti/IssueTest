@@ -51,7 +51,7 @@ jobs:
         We are super excited that you want to help us make Dynamo all that it can be."
       #issue_coment holds the comment format, while the missing information will be provided by analysis_response
       needs_more_info_comment: "However, we need some more information in order for the Dynamo
-        team to investigate any further\\n\\n."
+        team to investigate any further.\\n\\n"
       #comment to be used if the issue is closed due to the template being empty
       close_issue_comment: "However, given that there has been no additional information added, 
         this issue will be closed for now. Please reopen and provide additional 
@@ -105,7 +105,7 @@ jobs:
         if: ((env.analysis_response != 'Valid') && (env.analysis_response != 'Empty'))
         run: |
           curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"labels": ["${{env.issue_label}}"]}' ${{ github.event.issue.url }}/labels
-          curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"body": "${{env.comment_intro}} ${{env.needs_more_info_comment}} ${{env.specific_info}} ${{env.analysis_response}}.\\n${{env.info_needed}}"}' ${{ github.event.issue.url }}/comments
+          curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"body": "${{env.comment_intro}} ${{env.needs_more_info_comment}} ${{env.specific_info}} ${{env.analysis_response}}.\n${{env.info_needed}}"}' ${{ github.event.issue.url }}/comments
       
       #Removes the "needs more info" label if the issue has the missing information
       - name: Unlabel updated issue
