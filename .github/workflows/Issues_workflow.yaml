@@ -81,7 +81,7 @@ jobs:
       - name: Close issue
         if: env.analysis_response == 'Empty'
         run: |
-          curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"body": "${{env.close_issue_comment}}"}' ${{ github.event.issue.url }}/comments
+          curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"body": "${{env.comment_intro}} ${{env.close_issue_comment}}"}' ${{ github.event.issue.url }}/comments
           curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -X PATCH -d '{"state": "closed"}' ${{ github.event.issue.url }}
       
       #Adds the "needs more info" label if needed
