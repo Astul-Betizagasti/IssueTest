@@ -32,9 +32,8 @@ jobs:
         #Uses DYNAMOBOTTOKEN to allow interaction between repos
         run: |
           curl -v -u admin:${{ secrets.TOKEN }} -d '{"labels": ["${{env.content_analysis_response}}"]}' ${{ github.event.issue.url }}/labels
-          - name: Label issue
+          
       - if: env.content_analysis_response == 'Valid'
-        #Uses DYNAMOBOTTOKEN to allow interaction between repos
         run: |
           echo ${{env.content_analysis_response}}
   
@@ -43,6 +42,7 @@ jobs:
   checkIssueInformation:
     #if: needs.redirectIssue.outputs.result == 'Valid'
     name: Check for missing information
+    needs: redirectIssue
     runs-on: ubuntu-latest
     env:
       #The 'analysis_response' variable is used to store the script response on step one, 
@@ -65,7 +65,6 @@ jobs:
       acceptable_missing_info: 1
     steps:
       - name: test
-        #Uses DYNAMOBOTTOKEN to allow interaction between repos
         run: |
           echo ${{needs.redirectIssue.outputs.result}}
       - uses: actions/checkout@v2
@@ -89,7 +88,7 @@ jobs:
         if: ((env.analysis_response != 'Valid') && (env.analysis_response != 'Empty'))
         run: |
           curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"labels": ["${{env.issue_label}}"]}' ${{ github.event.issue.url }}/labels
-          curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"body": "${{env.comment_intro}} ${{env.needs_more_info_comment}}"}' ${{ github.event.issue.url }}/comments
+          curl -v -u admin:${{ secrets.GITHUB_TOKEN }} -d '{"body": "${{env.comment_intro}}"}' ${{ github.event.issue.url }}/comments
       - name: Unlabel updated issue
         if: env.analysis_response == 'Valid'
         run: |
