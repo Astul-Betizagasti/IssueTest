@@ -48,20 +48,29 @@ jobs:
       analysis_response: undefined
       #Comment intro
       comment_intro: >
-        "Hello ${{ github.actor }}, thank you for submitting this issue! 
-        We are super excited that you want to help us make Dynamo all that it can be."
+        Hello ${{ github.actor }}, thank you for submitting this issue! 
+        We are super excited that you want to help us make Dynamo all that it can be.
       #issue_coment holds the comment format, while the missing information will be provided by analysis_response
       needs_more_info_comment: >
-        "However, given that there has been no additional information added, 
+        However, given that there has been no additional information added, 
         this issue will be closed for now. Please reopen and provide additional 
         information if you wish the Dynamo team to investigate further.
-        \\n\\nAdditional information requested:\\n"
+        \\n\\nAdditional information requested:\\n
       #comment to be used if the issue is closed due to the template being empty
       close_issue_comment: >
-        "However, given that there has been no additional information added, 
+        However, given that there has been no additional information added, 
         this issue will be closed for now. Please reopen and provide additional 
         information if you wish the Dynamo team to investigate further.
-        \\n\\nAdditional information requested:\\n"
+        \\n\\nAdditional information requested:\\n
+      info_needed: >
+        "- Filling in of the provided Template (What did you do, What did you expect to see, 
+        What did you see instead, What packages or external references (if any) were used)\\n
+        - Attaching the Stack Trace (Error message that shows up when Dynamo crashes - You can copy and paste this into the Github Issue)\\n
+        - Upload a .DYN file that showcases the issue in action and any additional needed files, such as Revit 
+        (Note: If you cannot share a project, you can recreate this in a quick mock-up file)\\n
+        - Upload a Screenshot of the error messages you see (Hover over the offending node and showcase 
+        said errors message in the screenshot)\\n
+        - Reproducible steps on how to create the error in question."
       #template file name
       template: "ISSUE_TEMPLATE.md"
       #label to tag the issue with if its missing information
