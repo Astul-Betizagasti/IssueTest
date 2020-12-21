@@ -1,5 +1,7 @@
 name: Close stale issues
 on:
+  issues:
+    types: [opened,edited]
   schedule:
   - cron: "* * * * *"
 
@@ -11,6 +13,7 @@ jobs:
       uses: actions/stale@v3
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: "not used"
         skip-stale-issue-message: true
         close-issue-message: "Closing issue for missing info"
         days-before-stale: 1
