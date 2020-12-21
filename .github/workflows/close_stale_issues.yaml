@@ -1,0 +1,18 @@
+name: Close stale issues
+on:
+  schedule:
+  - cron: "*/2 * * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    - name: close stale issues
+      uses: actions/stale@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        skip-stale-issue-message: true
+        close-issue-message: "Closing issue for missing info"
+        days-before-stale: 0
+        days-before-close: 20
+        only-labels: 'needs more info'
