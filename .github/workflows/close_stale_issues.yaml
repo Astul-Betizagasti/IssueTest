@@ -17,5 +17,5 @@ jobs:
         skip-stale-issue-message: true
         close-issue-message: "Closing issue for missing info"
         days-before-stale: 1
-        days-before-close: 20
+        days-before-close: 0
         only-labels: 'needs more info'
