@@ -1,9 +1,7 @@
 name: Close stale issues
 on:
-  issues:
-    types: [opened,edited]
   schedule:
-  - cron: "* * * * *"
+  - cron: "0 0 * * *"
 
 jobs:
   stale:
@@ -13,9 +11,12 @@ jobs:
       uses: actions/stale@v3
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: "not used"
+        #this message is requiered but never used.
+        stale-issue-message: "."
         skip-stale-issue-message: true
-        close-issue-message: "Closing issue for missing info"
-        days-before-stale: 1
+        close-issue-message: "Given that there has been no additional information added, 
+        this issue will be closed for now. Please reopen and provide additional 
+        information if you wish the Dynamo team to investigate further."
+        days-before-stale: 30
         days-before-close: 0
         only-labels: 'needs more info'
