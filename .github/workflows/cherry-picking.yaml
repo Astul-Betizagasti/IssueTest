@@ -1,15 +1,14 @@
-name: PR for release branch
+name: Cherry picking
 on:
   push:
     branches:
       - master
 jobs:
-  release_pull_request:
+  cherry_pick:
     runs-on: ubuntu-latest
-    name: release_pull_request
     steps:
     - name: checkout
       uses: actions/checkout@v1
-    - name: Cherry-pick
+    - name: Cp
       run: |
         echo "$(pwsh .\\.github\\scripts\\cherry_pick.ps1 "cherry-test" "${{github.event.after}}" )"
