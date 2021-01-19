@@ -1,20 +1,27 @@
-name: PR for release branch
+name: Cherry picking
 on:
   push:
     branches:
       - master
 jobs:
-  release_pull_request:
+  cherry_pick:
     runs-on: ubuntu-latest
-    name: release_pull_request
+    env:
+      cherry_pick_command: 'git cherry-pick -x'
+      destination_branch: 'cherry-test'
     steps:
     - name: checkout
-      uses: actions/checkout@v1
-    - name: Create PR to branch
-      uses: gorillio/github-action-cherry-pick@master
-      with:
-        pr_branch: 'cherry-test'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITBOT_EMAIL: <BOT_EMAIL>
-        DRY_RUN: false
+      uses: actions/checkout@v2
+
+    - name: Adapt command for merges
+      if: contains(github.event.head_commit, 'Merge pull request')
+      run: echo "cherry_pick_command = 'git cherry-pick -x -m 1'" >> $GITHUB_ENV
+
+    - name: Cp
+      run: |
+        git config user.email "astul.betizagasti@globant.com"
+        git config user.name "Astul-Betizagasti"
+        git fetch --all
+        git checkout -b ${{env.destination_branch}} origin/${{env.destination_branch}}
+        ${{env.cherry_pick_command}} ${{github.event.after}}
+        git push origin ${{env.destination_branch}}
