@@ -7,7 +7,7 @@ jobs:
   cherry_pick:
     runs-on: ubuntu-latest
     env:
-      cherry_pick_command: 'git cherry-pick -x'
+      cherry_pick_command: 'git cherry-pick -x -m 1'
       destination_branch: 'cherry-test'
     steps:
     - name: checkout
