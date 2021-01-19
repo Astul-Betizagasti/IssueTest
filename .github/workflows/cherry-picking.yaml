@@ -10,11 +10,6 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v1
-    - name: Create PR to branch
-      uses: gorillio/github-action-cherry-pick@master
-      with:
-        pr_branch: 'cherry-test'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITBOT_EMAIL: <BOT_EMAIL>
-        DRY_RUN: false
+    - name: Cherry-pick
+      run: |
+        echo "$(pwsh .\\.github\\scripts\\cherry_pick.ps1 "cherry-test" "${{github.event.after}}" )"
