@@ -4,6 +4,7 @@ param([string]$branch, [string]$commitSHA)
 
 TEXT
 $commitSHA
+ENDTEXT
 
 git fetch --all
 git checkout -b $branch origin/$branch
