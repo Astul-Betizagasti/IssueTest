@@ -23,5 +23,5 @@ jobs:
         git config user.name "Astul-Betizagasti"
         git fetch --all
         git checkout -b ${{env.destination_branch}} origin/${{env.destination_branch}}
-        ${{env.cherry_pick_command}} ${{github.event.after}}
-        git push origin ${{env.destination_branch}}
+      #${{env.cherry_pick_command}} ${{github.event.after}}
+      #git push origin ${{env.destination_branch}}
