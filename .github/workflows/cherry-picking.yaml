@@ -16,7 +16,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
-    - name: ${{github.event.commits[0].message}} Adapt command for merges
+    - name: ${{github.event.ref}} Adapt command for merges
       if: contains(github.event.head_commit, 'Merge pull request')
       run: echo "cherry_pick_command = 'git cherry-pick -x -m 1'" >> $GITHUB_ENV
 
