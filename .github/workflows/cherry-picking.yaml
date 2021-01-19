@@ -6,14 +6,22 @@ on:
 jobs:
   cherry_pick:
     runs-on: ubuntu-latest
+    env:
+      cherry_pick_command: 'git cherry-pick -x'
+      destination_branch: 'cherry-test'
     steps:
     - name: checkout
       uses: actions/checkout@v2
+
+    - name: Adapt command for merges
+      if: contains(github.event.head_commit, 'Merge pull request')
+      run: echo "cherry_pick_command = 'git cherry-pick -x -m 1'" >> $GITHUB_ENV
+
     - name: Cp
       run: |
         git config user.email "astul.betizagasti@globant.com"
         git config user.name "Astul-Betizagasti"
         git fetch --all
-        git checkout -b cherry-test origin/cherry-test
-        git cherry-pick ${{github.event.after}}
-        git push origin cherry-test
+        git checkout -b ${{env.destination_branch}} origin/${{env.destination_branch}}
+        ${{env.cherry_pick_command}} ${{github.event.after}}
+        git push origin ${{env.destination_branch}}
