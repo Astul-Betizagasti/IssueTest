@@ -11,4 +11,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Cp
       run: |
-        echo "$(pwsh .\\.github\\scripts\\cherry_pick.ps1 "cherry-test" "${{github.event.after}}" )"
+        git fetch --all
+        git checkout -b cherry-test origin/cherry-test
+        git cherry-pick ${{github.event.after}}
+        git push origin cherry-test
