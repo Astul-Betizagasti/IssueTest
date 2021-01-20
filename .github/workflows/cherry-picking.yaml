@@ -26,12 +26,12 @@ jobs:
       with:
         pattern: "\""
         string: ${{github.event.commits[0].message}}
-        replace-with: "\\\""
+        replace-with: "-"
     
     - name: Check Information
       id: check-info
       run: |
-        echo "destination_branch=$(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 '${{ steps.remove_quotations.outputs.replaced }}' )" >> $GITHUB_ENV
+        echo "destination_branch=$(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 "${{ steps.remove_quotations.outputs.replaced }}" )" >> $GITHUB_ENV
       
 
     - name: Create PR to branch
