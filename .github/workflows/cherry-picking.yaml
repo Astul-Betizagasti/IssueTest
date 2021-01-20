@@ -7,10 +7,10 @@ jobs:
   cherry_pick:
     runs-on: ubuntu-latest
     env:
-      user_email: astul.betizagasti@globant.com
-      user_name: Astul-Betizagasti
-      cherry_pick_command: 'git cherry-pick -x ${{github.event.after}} --strategy-option theirs'
-      destination_branch: 'cherry-test'
+    #user_email: astul.betizagasti@globant.com
+    #user_name: Astul-Betizagasti
+    #cherry_pick_command: 'git cherry-pick -x ${{github.event.after}} --strategy-option theirs'
+      destination_branch: 'invalid'
     
     steps:
     - name: checkout
@@ -18,18 +18,28 @@ jobs:
 
     - name: Content tests 
       run: |
-        echo "${{github.event.commits[0]}}"
         echo "${{github.event.commits[0].message}}"
-        echo "${{github.event.commits[0].description}}"
-        echo "${{github.event.commits[1]}}"
-        echo "${{github.event.commits[1].message}}"
-        echo "${{github.event.commits[2].message}}"
 
-    - name: Cherry pick
+    - name: Remove conflicting chars
+      uses: frabert/replace-string-action@v1.2
+      id: remove_quotations
+      with:
+        pattern: "\""
+        string: ${{github.event.commits[0].message}}
+        replace-with: "-"
+    
+    - name: Check Information
+      id: check-info
       run: |
-        git config user.email ${{env.user_email}}
-        git config user.name ${{env.user_name}}
-        git fetch --all
-        git checkout -b ${{env.destination_branch}} origin/${{env.destination_branch}}
-        ${{env.cherry_pick_command}}
-        git push origin ${{env.destination_branch}}
+        echo "destination_branch=$(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 "${{ steps.remove_quotations.outputs.replaced }}" )" >> $GITHUB_ENV
+      
+
+    - name: Create PR to branch
+      if: env.destination_branch != 'invalid'
+      uses: gorillio/github-action-cherry-pick@master
+      with:
+        pr_branch: '${{ env.destination_branch }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITBOT_EMAIL: <BOT_EMAIL>
+        DRY_RUN: false
