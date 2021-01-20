@@ -5,7 +5,7 @@ $commitData = $commitMessage | Select-String -Pattern 'Cherry-pick to:\s?"*"'
 $commitData
 
 if($commitData){
-    $splitedData = $commitData.Split('"')
+    $splitedData = $commitData.Line.split('"')
     $branchName = $splitedData[1]
     if($branchName){
         Write-Output $branchName
