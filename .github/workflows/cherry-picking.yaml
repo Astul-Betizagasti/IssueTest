@@ -24,9 +24,9 @@ jobs:
       uses: frabert/replace-string-action@v1.2
       id: remove_quotations
       with:
-        pattern: "'"
+        pattern: "\""
         string: ${{github.event.commits[0].message}}
-        replace-with: '-'
+        replace-with: "\\\""
     
     - name: Check Information
       id: check-info
