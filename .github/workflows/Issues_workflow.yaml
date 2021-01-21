@@ -20,7 +20,7 @@ jobs:
         uses: frabert/replace-string-action@v1.2
         id: remove_quotations
         with:
-          pattern: \"
+          pattern: "\""
           string: '${{ github.event.issue.title }}'
           replace-with: '-'
           flags: g
@@ -91,6 +91,7 @@ jobs:
           pattern: "\""
           string: ${{ github.event.issue.body }}
           replace-with: '-'
+          flags: g
 
       #Checks for missing information inside the issue content
       - name: Check Information
