@@ -20,10 +20,10 @@ jobs:
         uses: frabert/replace-string-action@v1.2
         id: remove_quotations
         with:
-          pattern: '"'
+          pattern: "\""
           string: ${{ github.event.issue.title }}
           replace-with: '-'
-          flags: gm
+          flags: 'g'
       - name: Check Information
         id: check-info
         run: |
