@@ -14,14 +14,7 @@ jobs:
       auto_branch: 'auto-${{github.event.after}}'
       #Username for the cherrypick
       user_name: "Dynamo-Bot"
-      #This represents the title and description of the pr
-      #Everything before the first blank line will be included in the title
-      #Everything after will be included in the description
-      #prMessage: "\"Cherry-Pick from commit: ${{github.event.after}}\"\n
-       #           Cherry-picking this [commit](https://github.com/DynamoDS/Dynamo/commit/${{github.event.after}})\n
-        #          ##Contents:\n
-         #         ${{github.event.commits[0].message}}"
-      prMessage: "\"Cherry-Pick from commit: ${{github.event.after}}\""
+      
     steps:
     - name: checkout
       uses: actions/checkout@v2
@@ -54,4 +47,11 @@ jobs:
       env: 
         #Token used for the pull requests. Corresponds to the DynamoBot account
         GITHUB_TOKEN: ${{secrets.TOKEN}}
+        #This represents the title and description of the pr
+        #Everything before the first blank line will be included in the title
+        #Everything after will be included in the description
+        prMessage: '\"Cherry-Pick from commit: ${{github.event.after}}\"\n
+                  Cherry-picking this [commit](https://github.com/DynamoDS/Dynamo/commit/${{github.event.after}})\n
+                  ##Contents:\n
+                  ${{ steps.remove_quotations.outputs.replaced }}'
         
