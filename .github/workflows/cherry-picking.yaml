@@ -48,10 +48,11 @@ jobs:
         #Token used for the pull requests. Corresponds to the DynamoBot account
         GITHUB_TOKEN: ${{secrets.TOKEN}}
         #This represents the title and description of the pr in Markdown format
-        #Everything before the first blank line will be included in the title
+        #Everything before the first blank line will be the title
         #Everything after will be included in the description
-        prMessage: 'Cherry-Pick from commit: ${{github.event.after}}<br>
-                  Cherry-picking this [commit](https://github.com/DynamoDS/Dynamo/commit/${{github.event.after}})<br>
-                  ##Contents:<br>
-                  ${{ steps.remove_quotations.outputs.replaced }}'
-        
+        prMessage: |
+                  Cherry-Pick from commit: ${{github.event.after}}
+
+                  Cherry-picking this [commit](https://github.com/DynamoDS/Dynamo/commit/${{github.event.after}})
+                  ##Contents:
+                  ${{ steps.remove_quotations.outputs.replaced }}        
