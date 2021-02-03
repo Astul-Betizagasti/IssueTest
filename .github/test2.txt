@@ -5,3 +5,4 @@ asdasdasd
 COMMIT 1
 COMMIT 2
 COMMIT 2 posta
+COMMIT 3
