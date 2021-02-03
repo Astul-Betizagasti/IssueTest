@@ -41,8 +41,8 @@ jobs:
         git config user.name "${{env.user_name}}"
         git fetch --all
         git checkout -b ${{env.auto_branch}} origin/${{env.destination_branch}}
-        git cherry-pick ${{github.event.after}} -m 1
-        git cherry-pick --continue
+        git cherry-pick ${{github.event.after}}
+        git add .
         git push origin ${{env.auto_branch}}
         hub pull-request -b "${{env.destination_branch}}" -h "${{env.auto_branch}}" -l "cherry-pick" -m "${{env.prMessage}}"
       env: 
