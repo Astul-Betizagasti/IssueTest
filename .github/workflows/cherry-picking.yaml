@@ -51,10 +51,10 @@ jobs:
         #Everything before the first blank line will be the title
         #Everything after will be included in the description
         prMessage: |
-                  Cherry-Pick from commit: ${{github.event.after}}
+                  Cherry-Pick from [commit](https://github.com/DynamoDS/Dynamo/commit/${{github.event.after}}): ${{github.event.after}}
 
-                  ### Cherry-picking 
+                  ### Cherry-picking: 
                   [Commit](https://github.com/DynamoDS/Dynamo/commit/${{github.event.after}})
                   
-                  ### Pull request
+                  ### Pull request:
                   ${{ steps.remove_quotations.outputs.replaced }}        
