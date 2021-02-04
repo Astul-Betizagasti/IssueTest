@@ -39,10 +39,10 @@ jobs:
       name: Create PR to branch
       run: |
         git config user.name "${{env.user_name}}"
+        git remote update
         git fetch --all
         git checkout -b ${{env.auto_branch}} origin/${{env.destination_branch}}
-        git cherry-pick ${{github.event.after}}
-        git add .
+        git cherry-pick ${{github.event.after}} --strategy-options theirs
         git push origin ${{env.auto_branch}}
         hub pull-request -b "${{env.destination_branch}}" -h "${{env.auto_branch}}" -l "cherry-pick" -m "${{env.prMessage}}"
       env: 
