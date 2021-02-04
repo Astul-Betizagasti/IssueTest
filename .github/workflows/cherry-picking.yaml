@@ -2,7 +2,7 @@ name: Cherry picking
 on:
   push:
     branches:
-      - master
+      - feature-test
 jobs:
   cherry_pick:
     runs-on: ubuntu-latest
