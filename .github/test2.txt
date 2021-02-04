@@ -8,3 +8,9 @@ COMMIT 2 posta
 COMMIT 3
 A NEW HOPE 2
 NUEVO NUEVO 
+
+
+feature 1
+feature 2
+feature 3
+feature cherry-pick not
