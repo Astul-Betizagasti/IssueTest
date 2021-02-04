@@ -1,8 +1,8 @@
 name: Cherry picking
-on: push
-  #push:
-    #branches:
-      #- master
+on: 
+  push:
+    branches:
+      - master
 jobs:
   cherry_pick:
     runs-on: ubuntu-latest
