@@ -42,7 +42,10 @@ jobs:
         git remote update
         git fetch --all
         git checkout -b ${{env.auto_branch}} origin/${{env.destination_branch}}
-        git cherry-pick ${{github.event.after}} --strategy-option theirs
+        git cherry-pick -n ${{github.event.after}} --strategy-option theirs
+        git reset
+        git add -p
+        git commit
         git push origin ${{env.auto_branch}}
         hub pull-request -b "${{env.destination_branch}}" -h "${{env.auto_branch}}" -l "cherry-pick" -m "${{env.prMessage}}"
       env: 
