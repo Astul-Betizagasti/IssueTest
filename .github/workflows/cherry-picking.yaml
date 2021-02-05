@@ -31,9 +31,10 @@ jobs:
     #Checks the message looking for a cherry-pick request and extracts the target branch name
     - name: Check Information
       id: check-info
+    # echo "destination_branch=$(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 "${{ steps.remove_quotations.outputs.replaced }}" )" >> $GITHUB_ENV
       run: |
-        echo "destination_branch=$(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 "${{ steps.remove_quotations.outputs.replaced }}" )" >> $GITHUB_ENV
-    
+        echo ("destination_branch=" + $(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 "${{ steps.remove_quotations.outputs.replaced }}" )) >> $env:GITHUB_ENV
+
       #If a target branch was found will run the action
     - if: env.destination_branch != 'invalid'
       name: Create PR to branch
@@ -43,7 +44,7 @@ jobs:
         git remote update
         git fetch --all
         git checkout -b ${{env.auto_branch}} origin/${{env.destination_branch}}
-        git cherry-pick ${{github.event.after}}
+        git cherry-pick ${{github.event.after}} --strategy-option theirs
         git push origin ${{env.auto_branch}}
         hub pull-request -b "${{env.destination_branch}}" -h "${{env.auto_branch}}" -l "cherry-pick" -m "${{env.prMessage}}"
       env: 
