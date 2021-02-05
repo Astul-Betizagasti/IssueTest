@@ -1,10 +1,1 @@
-ping pong asdad ada COMMIT 2 sdasdsa dasd
-asdasdasd asdadsad asdadasd
-asdasdds
-asdasdasd
-COMMIT 1
-COMMIT 2
-COMMIT 2 posta
-COMMIT 3
-A NEW HOPE 2
-NUEVO NUEVO 
+changes 2
