@@ -1,5 +1,1 @@
-Should update cherry-test asasdasd asasd asdasdasd 
-zsdfsfsdf
-asdasdasda
-aasdadasdas
-COMMIT 1
+changes 1
