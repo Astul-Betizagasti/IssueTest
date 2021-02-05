@@ -8,3 +8,10 @@ COMMIT 2 posta
 COMMIT 3
 A NEW HOPE 2
 NUEVO NUEVO 
+
+asdasdas CHERRY PICK FF
+
+feature 1
+feature 2
+feature 3
+feature cherry-pick not
