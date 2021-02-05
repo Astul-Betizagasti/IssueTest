@@ -33,16 +33,17 @@ jobs:
       id: check-info
       run: |
         echo "destination_branch=$(pwsh .\\.github\\scripts\\cherry_pick_check.ps1 "${{ steps.remove_quotations.outputs.replaced }}" )" >> $GITHUB_ENV
-    
+
       #If a target branch was found will run the action
     - if: env.destination_branch != 'invalid'
       name: Create PR to branch
       run: |
+        git --version
         git config user.name "${{env.user_name}}"
         git remote update
         git fetch --all
         git checkout -b ${{env.auto_branch}} origin/${{env.destination_branch}}
-        git cherry-pick --ff ${{github.event.after}} --strategy-option theirs
+        git cherry-pick ${{github.event.after}} --strategy-option theirs
         git push origin ${{env.auto_branch}}
         hub pull-request -b "${{env.destination_branch}}" -h "${{env.auto_branch}}" -l "cherry-pick" -m "${{env.prMessage}}"
       env: 
