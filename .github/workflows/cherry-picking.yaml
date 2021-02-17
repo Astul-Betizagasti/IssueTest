@@ -1,8 +1,10 @@
 name: Cherry picking
-on: 
-  push:
-    branches:
-      - master
+#DYN-3364 
+#This action is disabled for now due to an issue with its behavior
+#on: 
+  #push:
+    #branches:
+      #- master
 jobs:
   cherry_pick:
     runs-on: ubuntu-latest
